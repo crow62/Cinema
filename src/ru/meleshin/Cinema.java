@@ -70,7 +70,7 @@ public class Cinema {
             }
         }
 
-        if (cinema.length * cinema[0].length > 60) System.out.println("Ticket price 10$");
+        if ((cinema.length-1) * (cinema[0].length-1) > 60) System.out.println("Ticket price 10$");
         else System.out.println("Ticket price 8$");
     }
 
