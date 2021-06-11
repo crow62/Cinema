@@ -5,14 +5,19 @@ import java.util.Scanner;
 
 public class Cinema {
 
+    static StringBuilder cell0 = new StringBuilder(" ");
+    static StringBuilder cell = new StringBuilder("S");
+    static StringBuilder seat = new StringBuilder("B");
+
     public static void main(String[] args) {
-        String[][] cinema = buildCinema();
+
+        StringBuilder[][] cinema = buildCinema();
         printCinema(cinema);
         takeSeat(cinema);
         printCinema(cinema);
     }
 
-    private static String[][] buildCinema() {
+    private static StringBuilder[][] buildCinema() {
         int rows = 0;
         int columns = 0;
 
@@ -31,26 +36,26 @@ public class Cinema {
         }
 
         int count = 1;
-        String[][] cinema = new String[rows][columns];
+        StringBuilder[][] cinema = new StringBuilder[rows][columns];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 if (i == 0 & j == 0) {
-                    cinema[i][j] = " ";
+                    cinema[i][j] = cell0;
                     continue;
                 }
                 if (i == 0 || j == 0) {
-                    cinema[i][j] = String.valueOf(count);
+                    cinema[i][j] = new StringBuilder(String.valueOf(count));
                     count++;
                     if (i == 0 & j == columns - 1) count = 1;
                 } else {
-                    cinema[i][j] = "S";
+                    cinema[i][j] = cell;
                 }
             }
         }
         return cinema;
     }
 
-    private static void takeSeat(String[][] cinema) {
+    private static void takeSeat(StringBuilder [][] cinema) {
         int row = 0;
         int sitting = 0;
         while (true) {
@@ -61,7 +66,7 @@ public class Cinema {
                 row = scanner1.nextInt();
                 System.out.println("Enter the seat number: ");
                 sitting = scanner1.nextInt();
-                cinema[row][sitting] = "B";
+                cinema[row][sitting] = seat;
                 break;
             } catch (InputMismatchException ex) {
                 System.out.println("You entered not a number!");
@@ -74,10 +79,11 @@ public class Cinema {
         else System.out.println("Ticket price 8$");
     }
 
-    private static void printCinema(String[][] cinema) {
+    private static void printCinema(StringBuilder [][] cinema) {
         for (int i = 0; i < cinema.length; i++) {
             for (int j = 0; j < cinema[i].length; j++) {
-                System.out.print(cinema[i][j] + "  ");
+
+                System.out.print(cinema[i][j]+" ");
             }
             System.out.println();
         }
